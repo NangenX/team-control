@@ -7,6 +7,7 @@ import FileBrowser from '../components/FileBrowser';
 import type { FileBrowserApi } from '../components/FileBrowser';
 import { saveAccentColor, getSavedAccentColor, resetAccentColor, PRESET_COLORS } from '../utils/theme';
 import UserManagement from './UserManagement';
+import InvitationCodes from './InvitationCodes';
 
 // API helpers for enterprise endpoints
 async function fetchJson<T>(url: string, options?: RequestInit): Promise<T> {
@@ -604,7 +605,7 @@ function CompanyTimezoneEditor() {
 export default function EnterpriseSettings() {
     const { t } = useTranslation();
     const qc = useQueryClient();
-    const [activeTab, setActiveTab] = useState<'llm' | 'org' | 'info' | 'approvals' | 'audit' | 'tools' | 'skills' | 'quotas' | 'users'>('info');
+    const [activeTab, setActiveTab] = useState<'llm' | 'org' | 'info' | 'approvals' | 'audit' | 'tools' | 'skills' | 'quotas' | 'users' | 'invites'>('info');
 
     // Track selected tenant as state so page refreshes on company switch
     const [selectedTenantId, setSelectedTenantId] = useState(localStorage.getItem('current_tenant_id') || '');
@@ -646,17 +647,31 @@ export default function EnterpriseSettings() {
     const [companyIntroSaving, setCompanyIntroSaving] = useState(false);
     const [companyIntroSaved, setCompanyIntroSaved] = useState(false);
 
-    // Load Company Intro
+    // Company intro key: per-tenant (company_intro_{tenantId}), fallback to global for default company
+    const companyIntroKey = selectedTenantId ? `company_intro_${selectedTenantId}` : 'company_intro';
+
+    // Load Company Intro (try tenant-scoped key first, fallback to global)
     useEffect(() => {
-        fetchJson<any>('/enterprise/system-settings/company_intro')
-            .then(d => { if (d?.value?.content) setCompanyIntro(d.value.content); })
+        setCompanyIntro('');
+        if (!selectedTenantId) return;
+        const tenantKey = `company_intro_${selectedTenantId}`;
+        fetchJson<any>(`/enterprise/system-settings/${tenantKey}`)
+            .then(d => {
+                if (d?.value?.content) {
+                    setCompanyIntro(d.value.content);
+                } else {
+                    // Fallback: check global key for backward compat (default company)
+                    return fetchJson<any>('/enterprise/system-settings/company_intro')
+                        .then(g => { if (g?.value?.content) setCompanyIntro(g.value.content); });
+                }
+            })
             .catch(() => { });
-    }, []);
+    }, [selectedTenantId]);
 
     const saveCompanyIntro = async () => {
         setCompanyIntroSaving(true);
         try {
-            await fetchJson('/enterprise/system-settings/company_intro', {
+            await fetchJson(`/enterprise/system-settings/${companyIntroKey}`, {
                 method: 'PUT', body: JSON.stringify({ value: { content: companyIntro } }),
             });
             setCompanyIntroSaved(true);
@@ -827,9 +842,9 @@ export default function EnterpriseSettings() {
                 </div>
 
                 <div className="tabs">
-                    {(['info', 'llm', 'tools', 'skills', 'quotas', 'users', 'org', 'approvals', 'audit'] as const).map(tab => (
+                    {(['info', 'llm', 'tools', 'skills', 'invites', 'quotas', 'users', 'org', 'approvals', 'audit'] as const).map(tab => (
                         <div key={tab} className={`tab ${activeTab === tab ? 'active' : ''}`} onClick={() => setActiveTab(tab)}>
-                            {tab === 'quotas' ? t('enterprise.tabs.quotas', 'Quotas') : tab === 'users' ? t('enterprise.tabs.users', 'Users') : t(`enterprise.tabs.${tab}`)}
+                            {tab === 'quotas' ? t('enterprise.tabs.quotas', 'Quotas') : tab === 'users' ? t('enterprise.tabs.users', 'Users') : tab === 'invites' ? t('enterprise.tabs.invites', 'Invitations') : t(`enterprise.tabs.${tab}`)}
                         </div>
                     ))}
                 </div>
@@ -1043,7 +1058,7 @@ export default function EnterpriseSettings() {
                                 className="form-input"
                                 value={companyIntro}
                                 onChange={e => setCompanyIntro(e.target.value)}
-                                placeholder={`# Company Name\n\n## About Us\nDescribe your company here...\n\n## Products & Services\n- Product A\n- Product B\n\n## Culture & Values\n- Value 1\n- Value 2`}
+                                placeholder={`# Company Name\nClawith\n\n# About\nOpenClaw\uD83E\uDD9E For Teams\nOpen Source \u00B7 Multi-OpenClaw Collaboration\n\nOpenClaw empowers individuals.\nClawith scales it to frontier organizations.`}
                                 style={{
                                     minHeight: '200px', resize: 'vertical',
                                     fontFamily: 'var(--font-mono)', fontSize: '13px',
@@ -1498,6 +1513,9 @@ export default function EnterpriseSettings() {
 
                 {/* ── Skills Tab ── */}
                 {activeTab === 'skills' && <SkillsTab />}
+
+                {/* ── Invitation Codes Tab ── */}
+                {activeTab === 'invites' && <InvitationCodes />}
             </div>
 
             {
