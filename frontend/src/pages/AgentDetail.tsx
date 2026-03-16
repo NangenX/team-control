@@ -330,7 +330,7 @@ function ToolsManager({ agentId, canManage = false }: { agentId: string; canMana
                                             onClick={async () => {
                                                 const btn = document.getElementById('email-test-btn');
                                                 const status = document.getElementById('email-test-status');
-                                                if (btn) btn.textContent = 'Testing...';
+                                                if (btn) btn.textContent = t('agent.settings.emailTesting');
                                                 if (btn) (btn as HTMLButtonElement).disabled = true;
                                                 try {
                                                     const token = localStorage.getItem('token');
@@ -382,8 +382,8 @@ function ToolsManager({ agentId, canManage = false }: { agentId: string; canMana
                                     setConfigTool(null); loadTools();
                                 }}>Reset to Global</button>
                             )}
-                            <button className="btn btn-secondary" onClick={() => setConfigTool(null)}>Cancel</button>
-                            <button className="btn btn-primary" onClick={saveConfig} disabled={configSaving}>{configSaving ? 'Saving…' : 'Save'}</button>
+                            <button className="btn btn-secondary" onClick={() => setConfigTool(null)}>{t('common.cancel', 'Cancel')}</button>
+                            <button className="btn btn-primary" onClick={saveConfig} disabled={configSaving}>{configSaving ? t('common.save', 'Saving...') : t('common.saveShort', 'Save')}</button>
                         </div>
                     </div>
                 </div>
@@ -4886,10 +4886,10 @@ function AgentDetailInner() {
                                                             )}
                                                             <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
                                                                 <button className="btn btn-secondary" style={{ fontSize: '12px', padding: '4px 12px' }} onClick={testAtlassian} disabled={atlassianTesting}>
-                                                                    {atlassianTesting ? 'Testing...' : '🔌 Test Connection'}
+                                                                    {atlassianTesting ? t('agent.settings.atlassianTesting') : t('agent.settings.atlassianTestConnection')}
                                                                 </button>
-                                                                <button className="btn btn-secondary" style={{ fontSize: '12px', padding: '4px 12px' }} onClick={() => { setAtlassianForm({ api_key: '', cloud_id: atlassianConfig?.cloud_id || '' }); setAtlassianEditing(true); }}>Edit</button>
-                                                                <button className="btn btn-danger" style={{ fontSize: '12px', padding: '4px 12px' }} onClick={() => deleteAtlassian.mutate()}>Disconnect</button>
+                                                                <button className="btn btn-secondary" style={{ fontSize: '12px', padding: '4px 12px' }} onClick={() => { setAtlassianForm({ api_key: '', cloud_id: atlassianConfig?.cloud_id || '' }); setAtlassianEditing(true); }}>{t('common.edit', 'Edit')}</button>
+                                                                <button className="btn btn-danger" style={{ fontSize: '12px', padding: '4px 12px' }} onClick={() => deleteAtlassian.mutate()}>{t('common.disconnect', 'Disconnect')}</button>
                                                             </div>
                                                         </div>
                                                     ) : (

@@ -96,13 +96,6 @@
   },
   "agent": {
     "status": {
-      "running": "Working",
-      "idle": "Idle",
-      "stopped": "Stopped",
-      "creating": "Creating",
-      "error": "Error"
-    },
-    "status": {
       "24hActions": "24h Actions",
       "24hActionsTooltip": "Total recorded operations in the past 24 hours, including chats, tool calls, task executions, etc.",
       "llmCallsToday": "LLM Calls Today",
@@ -383,7 +376,9 @@
         "description": "Greeting message sent automatically when a user starts a new web conversation. Supports Markdown. Leave empty to disable.",
         "saved": "Saved",
         "placeholder": "e.g. Hello! I'm your AI assistant. How can I help you?"
-      }
+      },
+      "emailTesting": "Testing...",
+      "emailError": "Error:"
     },
     "tools": {
       "platformTools": "Platform Tools",
@@ -627,7 +622,7 @@
     }
   },
   "common": {
-    "save": "Save",
+    "save": "Saving...",
     "cancel": "Cancel",
     "confirm": "Confirm",
     "delete": "Delete",
@@ -650,7 +645,9 @@
       "teams": "Microsoft Teams",
       "dingtalk": "DingTalk",
       "wecom": "WeCom"
-    }
+    },
+    "saveShort": "Save",
+    "disconnect": "Disconnect"
   },
   "openclaw": {
     "created": "OpenClaw Agent Created",
