@@ -3503,7 +3503,9 @@ function AgentDetailInner() {
                                         const name = fieldNames[c.field] || c.field;
                                         return `${name}: ${c.requested} -> ${c.applied} (${t('agent.settings.fieldNames.companyPolicy')})`;
                                     });
-                                    setSettingsError(t('agent.settings.settingsAdjusted') + '\n' + msgs.join('\n'));
+                                    // Include a stable non-localized marker ("adjusted") so styling logic that checks
+                                    // settingsError.includes('adjusted') continues to work across locales.
+                                    setSettingsError('[adjusted] ' + t('agent.settings.settingsAdjusted') + '\n' + msgs.join('\n'));
                                     setTimeout(() => setSettingsError(''), 5000);
                                 }
 
