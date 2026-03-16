@@ -83,16 +83,6 @@
       "error": "错误",
       "creating": "创建中"
     },
-    "status": {
-      "24hActions": "24h 活动",
-      "24hActionsTooltip": "过去 24 小时内该 Agent 的所有操作记录，包括对话、工具调用、任务执行等",
-      "llmCallsToday": "今日 LLM 调用",
-      "maxLlmCalls": "上限",
-      "totalToken": "累计 Token",
-      "pending": "待审批",
-      "createdBy": "创建者",
-      "lastActive": "最后活跃"
-    },
     "noActivity": "暂无活动记录",
     "noLimit": "无限制",
     "justNow": "刚刚",
@@ -103,6 +93,18 @@
     "recentCount": "最近 {{count}} 条",
     "noAgents": "还没有数字员工，创建你的第一个吧",
     "createFirst": "创建第一个数字员工"
+  },
+  "agent": {
+    "status": {
+      "24hActions": "24h 活动",
+      "24hActionsTooltip": "过去 24 小时内该 Agent 的所有操作记录，包括对话、工具调用、任务执行等",
+      "llmCallsToday": "今日 LLM 调用",
+      "maxLlmCalls": "上限",
+      "totalToken": "累计 Token",
+      "pending": "待审批",
+      "createdBy": "创建者",
+      "lastActive": "最后活跃"
+    }
   },
   "agent": {
     "status": {
