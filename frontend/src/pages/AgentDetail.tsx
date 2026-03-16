@@ -349,11 +349,11 @@ function ToolsManager({ agentId, canManage = false }: { agentId: string; canMana
                                                 } catch (e: any) {
                                                     if (status) { status.textContent = `Error: ${e.message}`; status.style.color = 'var(--error)'; }
                                                 } finally {
-                                                    if (btn) { btn.textContent = 'Test Connection'; (btn as HTMLButtonElement).disabled = false; }
+                                                    if (btn) { btn.textContent = t('agent.settings.testConnection'); (btn as HTMLButtonElement).disabled = false; }
                                                 }
                                             }}
                                             id="email-test-btn"
-                                        >Test Connection</button>
+                                        >{t('agent.settings.testConnection')}</button>
                                         <div id="email-test-status" style={{ fontSize: '11px', whiteSpace: 'pre-line', minHeight: '16px' }}></div>
                                     </div>
                                 )}
@@ -380,7 +380,7 @@ function ToolsManager({ agentId, canManage = false }: { agentId: string; canMana
                                     const token = localStorage.getItem('token');
                                     await fetch(`/api/tools/agents/${agentId}/tool-config/${configTool.id}`, { method: 'PUT', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }, body: JSON.stringify({ config: {} }) });
                                     setConfigTool(null); loadTools();
-                                }}>Reset to Global</button>
+                                }}>{t('agent.settings.resetToGlobal')}</button>
                             )}
                             <button className="btn btn-secondary" onClick={() => setConfigTool(null)}>Cancel</button>
                             <button className="btn btn-primary" onClick={saveConfig} disabled={configSaving}>{configSaving ? 'Saving…' : 'Save'}</button>
@@ -1699,7 +1699,7 @@ function AgentDetailInner() {
                                         fontSize: '10px', padding: '2px 6px', borderRadius: '4px',
                                         background: 'linear-gradient(135deg, #6366f1, #8b5cf6)', color: '#fff', fontWeight: 600,
                                         letterSpacing: '0.5px',
-                                    }}>OpenClaw · Lab</span>
+                                    }}>{t('agent.openclawLab')}</span>
                                 )}
                                 {!(agent as any).is_expired && (agent as any).expires_at && (
                                     <span style={{ fontSize: '11px', color: 'var(--text-tertiary)' }}>
@@ -2962,7 +2962,7 @@ function AgentDetailInner() {
                                                                         padding: '6px 10px', cursor: 'pointer',
                                                                         color: 'rgba(147, 130, 220, 0.9)', fontWeight: 500,
                                                                         userSelect: 'none', display: 'flex', alignItems: 'center', gap: '4px',
-                                                                    }}>Thinking</summary>
+                                                                    }}>{t('agent.chat.thinking')}</summary>
                                                                     <div style={{
                                                                         padding: '4px 10px 8px',
                                                                         fontSize: '12px', lineHeight: '1.6',
@@ -2998,7 +2998,7 @@ function AgentDetailInner() {
                                                                                     color: 'rgba(147, 130, 220, 0.9)', fontWeight: 500,
                                                                                     userSelect: 'none', display: 'flex', alignItems: 'center', gap: '4px',
                                                                                 }}>
-                                                                                    💭 Thinking
+                                                                                    {t('agent.chat.thinkingWithEmoji')}
                                                                                 </summary>
                                                                                 <div style={{
                                                                                     padding: '4px 10px 8px',
@@ -3072,7 +3072,7 @@ function AgentDetailInner() {
                                                                         padding: '6px 10px', cursor: 'pointer',
                                                                         color: 'rgba(147, 130, 220, 0.9)', fontWeight: 500,
                                                                         userSelect: 'none', display: 'flex', alignItems: 'center', gap: '4px',
-                                                                    }}>Thinking</summary>
+                                                                    }}>{t('agent.chat.thinking')}</summary>
                                                                     <div style={{
                                                                         padding: '4px 10px 8px',
                                                                         fontSize: '12px', lineHeight: '1.6',
@@ -3112,7 +3112,7 @@ function AgentDetailInner() {
                                                                         color: 'rgba(147, 130, 220, 0.9)', fontWeight: 500,
                                                                         userSelect: 'none', display: 'flex', alignItems: 'center', gap: '4px',
                                                                     }}>
-                                                                        💭 Thinking
+                                                                        {t('agent.chat.thinkingWithEmoji')}
                                                                     </summary>
                                                                     <div style={{
                                                                         padding: '4px 10px 8px',
@@ -4886,7 +4886,7 @@ function AgentDetailInner() {
                                                             )}
                                                             <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
                                                                 <button className="btn btn-secondary" style={{ fontSize: '12px', padding: '4px 12px' }} onClick={testAtlassian} disabled={atlassianTesting}>
-                                                                    {atlassianTesting ? 'Testing...' : '🔌 Test Connection'}
+                                                                    {atlassianTesting ? t('agent.settings.atlassianTesting') : t('agent.settings.atlassianTestConnection')}
                                                                 </button>
                                                                 <button className="btn btn-secondary" style={{ fontSize: '12px', padding: '4px 12px' }} onClick={() => { setAtlassianForm({ api_key: '', cloud_id: atlassianConfig?.cloud_id || '' }); setAtlassianEditing(true); }}>Edit</button>
                                                                 <button className="btn btn-danger" style={{ fontSize: '12px', padding: '4px 12px' }} onClick={() => deleteAtlassian.mutate()}>Disconnect</button>

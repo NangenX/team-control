@@ -96,13 +96,6 @@
   },
   "agent": {
     "status": {
-      "running": "Working",
-      "idle": "Idle",
-      "stopped": "Stopped",
-      "creating": "Creating",
-      "error": "Error"
-    },
-    "status": {
       "24hActions": "24h Actions",
       "24hActionsTooltip": "Total recorded operations in the past 24 hours, including chats, tool calls, task executions, etc.",
       "llmCallsToday": "LLM Calls Today",
@@ -273,7 +266,8 @@
       "attachment": "Attachment",
       "uploadFailed": "Upload failed",
       "askAboutFile": "Ask about {{name}}...",
-      "thinking": "Thinking..."
+      "thinking": "Thinking...",
+      "thinkingWithEmoji": "💭 Thinking"
     },
     "activityLog": {
       "title": "Activity Log",
@@ -383,7 +377,11 @@
         "description": "Greeting message sent automatically when a user starts a new web conversation. Supports Markdown. Leave empty to disable.",
         "saved": "Saved",
         "placeholder": "e.g. Hello! I'm your AI assistant. How can I help you?"
-      }
+      },
+      "testConnection": "Test Connection",
+      "resetToGlobal": "Reset to Global",
+      "atlassianTestConnection": "🔌 Test Connection",
+      "atlassianTesting": "Testing..."
     },
     "tools": {
       "platformTools": "Platform Tools",
@@ -402,7 +400,8 @@
       "success": "Upload successful",
       "failed": "Upload failed",
       "uploading": "Uploading..."
-    }
+    },
+    "openclawLab": "OpenClaw · Lab"
   },
   "wizard": {
     "steps": {
