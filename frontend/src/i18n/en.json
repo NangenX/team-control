@@ -100,9 +100,7 @@
       "idle": "Idle",
       "stopped": "Stopped",
       "creating": "Creating",
-      "error": "Error"
-    },
-    "status": {
+      "error": "Error",
       "24hActions": "24h Actions",
       "24hActionsTooltip": "Total recorded operations in the past 24 hours, including chats, tool calls, task executions, etc.",
       "llmCallsToday": "LLM Calls Today",
