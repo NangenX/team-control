@@ -382,7 +382,7 @@ export default function Chat() {
                                             color: 'rgba(147, 130, 220, 0.9)', fontWeight: 500,
                                             userSelect: 'none', display: 'flex', alignItems: 'center', gap: '4px',
                                         }}>
-                                            💭 Thinking
+                                            {t('agent.chat.thinkingWithEmoji')}
                                         </summary>
                                         <div style={{
                                             padding: '4px 10px 8px',

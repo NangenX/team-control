@@ -381,7 +381,11 @@
       "testConnection": "测试连接",
       "resetToGlobal": "重置为全局",
       "atlassianTestConnection": "🔌 测试连接",
-      "atlassianTesting": "测试中..."
+      "atlassianTesting": "测试中...",
+      "atlassianStatus": "状态",
+      "atlassianConnected": "✅ API Key 已配置 — Jira / Confluence / Compass 工具可用",
+      "atlassianConnectionSuccess": "✅ 已连接 — {{count}} 个工具可用",
+      "atlassianConnectionError": "❌ {{error}}"
     },
     "tools": {
       "platformTools": "平台预置工具",

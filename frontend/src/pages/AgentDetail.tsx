@@ -4873,15 +4873,15 @@ function AgentDetailInner() {
                                                     ) : atlassianConfig?.is_configured && !atlassianEditing ? (
                                                         <div>
                                                             <div style={{ background: 'var(--bg-secondary)', borderRadius: '6px', padding: '10px', fontSize: '12px', marginBottom: '12px' }}>
-                                                                <div style={{ color: 'var(--text-tertiary)', marginBottom: '4px' }}>Status</div>
-                                                                <div style={{ color: 'var(--text-primary)', fontWeight: 500 }}>✅ API Key configured — Jira / Confluence / Compass tools available</div>
+                                                                <div style={{ color: 'var(--text-tertiary)', marginBottom: '4px' }}>{t('agent.settings.atlassianStatus')}</div>
+                                                                <div style={{ color: 'var(--text-primary)', fontWeight: 500 }}>{t('agent.settings.atlassianConnected')}</div>
                                                                 {atlassianConfig.cloud_id && <div style={{ color: 'var(--text-tertiary)', marginTop: '4px', fontSize: '11px' }}>Cloud ID: <code>{atlassianConfig.cloud_id}</code></div>}
                                                             </div>
                                                             {atlassianTestResult && (
                                                                 <div style={{ padding: '8px 12px', borderRadius: '6px', fontSize: '12px', marginBottom: '10px', background: atlassianTestResult.ok ? 'rgba(16,185,129,0.08)' : 'rgba(239,68,68,0.08)', border: `1px solid ${atlassianTestResult.ok ? 'rgba(16,185,129,0.25)' : 'rgba(239,68,68,0.25)'}`, color: atlassianTestResult.ok ? 'rgb(5,150,105)' : 'rgb(220,38,38)' }}>
                                                                     {atlassianTestResult.ok
-                                                                        ? `✅ ${atlassianTestResult.message || `Connected — ${atlassianTestResult.tool_count} tools available`}`
-                                                                        : `❌ ${atlassianTestResult.error}`}
+                                                                        ? t('agent.settings.atlassianConnectionSuccess', { count: atlassianTestResult.tool_count })
+                                                                        : t('agent.settings.atlassianConnectionError', { error: atlassianTestResult.error })}
                                                                 </div>
                                                             )}
                                                             <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>

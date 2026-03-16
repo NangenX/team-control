@@ -381,7 +381,11 @@
       "testConnection": "Test Connection",
       "resetToGlobal": "Reset to Global",
       "atlassianTestConnection": "🔌 Test Connection",
-      "atlassianTesting": "Testing..."
+      "atlassianTesting": "Testing...",
+      "atlassianStatus": "Status",
+      "atlassianConnected": "✅ API Key configured — Jira / Confluence / Compass tools available",
+      "atlassianConnectionSuccess": "✅ Connected — {{count}} tools available",
+      "atlassianConnectionError": "❌ {{error}}"
     },
     "tools": {
       "platformTools": "Platform Tools",
