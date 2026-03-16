@@ -1841,7 +1841,7 @@ function AgentDetailInner() {
                                             <span title={agent.role_description || ''} style={{ textAlign: 'right', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' as any }}>{agent.role_description || '—'}</span>
                                         </div>
                                         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px' }}>
-                                            <span style={{ color: 'var(--text-tertiary)' }}>{t('common.createdBy', 'Created')}</span>
+                                            <span style={{ color: 'var(--text-tertiary)' }}>{t('agent.status.createdAt', 'Created')}</span>
                                             <span>{agent.created_at ? formatDate(agent.created_at) : '—'}</span>
                                         </div>
                                         {(agent as any).creator_username && (
